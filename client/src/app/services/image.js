@@ -7,7 +7,7 @@ const getJwtToken = () => localStorage.getItem('jwt');
 export const imageApi = createApi({
   reducerPath: 'imageApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_URL}image/`,
+    baseUrl: `${import.meta.env.VITE_SERVER_URL}`,
     prepareHeaders: (headers) => {
       const token = getJwtToken();
       if (token) {
@@ -19,23 +19,23 @@ export const imageApi = createApi({
   endpoints: (builder) => ({
     generateImage: builder.mutation({
       query: (data) => ({
-        url: 'generate',
+        url: 'image/generate',
         method: 'POST',
         body: data,
       }),
     }),
     uploadImage: builder.mutation({
       query: (data) => ({
-        url: 'upload',
+        url: 'image/upload',
         method: 'POST',
         body: data,
       }),
     }),
     getImageById: builder.query({
-      query: (id) => `detail/${id}`,
+      query: (id) => `image/detail/${id}`,
     }),
     getAllImage: builder.query({
-      query: (page) => `all?page=${page}`,
+      query: (page) => `image/all?page=${page}`,
     }),
   }),
 });
