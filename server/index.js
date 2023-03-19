@@ -19,7 +19,11 @@ const port = process.env.PORT || API_PORT;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 app.use(
   session({
