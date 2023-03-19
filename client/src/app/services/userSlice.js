@@ -85,14 +85,8 @@ const userSlice = createSlice({
     );
     builder.addMatcher(
       (action) => action.type.endsWith('/rejected'),
-      (
-        state,
-        {
-          payload: {
-            data: { message },
-          },
-        }
-      ) => {
+      (state, { payload }) => {
+        let message = payload?.data?.message || '';
         if (message === 'Unauthorized') {
           localStorage.removeItem('jwt');
           localStorage.removeItem('id');
